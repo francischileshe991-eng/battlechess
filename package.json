@@ -1,0 +1,25 @@
+{
+  "name": "shadow-chess",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local two-player medieval silhouette chess",
+  "scripts": {
+    "postinstall": "node scripts/vendor.js",
+    "start": "node scripts/serve.js",
+    "dev": "node scripts/serve.js",
+    "build": "node scripts/build.js",
+    "test": "node --test tests/game.test.js tests/animation.test.js tests/combat.test.js tests/attacks.test.js tests/ai.test.js tests/setup-ai.test.js tests/audio.test.js",
+    "test:browser": "playwright test",
+    "setup:ai": "node scripts/setup-ai.js",
+    "build:ai": "node scripts/build.js --require-ai",
+    "test:stockfish": "node scripts/check-ai.js",
+    "test:mobile": "playwright test tests/responsive.spec.js"
+  },
+  "dependencies": {
+    "chess.js": "1.4.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}

@@ -1,0 +1,23 @@
+.combat-controls { margin-top: 12px; }
+.combat-layer { overflow: hidden; }
+.combat-warrior, .combat-impact { position: absolute; will-change: transform, opacity; }
+.combat-attacker { z-index: 2; }
+.combat-defender { z-index: 1; transform-origin: 50% 84%; }
+.combat-warrior .weapon { transform-origin: 32px 30px; }
+.combat-impact { z-index: 3; opacity: 0; pointer-events: none; }
+.combat-impact svg { width: 100%; height: 100%; overflow: visible; }
+.slash-trail { fill: #f4f0cf; opacity: .85; }
+.impact-sparks { fill: #e5d9a8; stroke: #fff6d5; stroke-width: .6; }
+.combat-warrior .figure { transform-origin: 32px 54px; }
+.combat-projectile { position: absolute; z-index: 4; opacity: 0; will-change: transform, opacity; }
+.combat-projectile svg { width: 100%; height: 100%; overflow: visible; }
+.energy-ring, .shockwave { fill: none; stroke: #e0ebcb; stroke-width: 2; }
+.magic-rays, .charge-lines { fill: none; stroke: #e8edda; stroke-width: 2; stroke-linecap: round; }
+.impact-cracks { fill: none; stroke: #f0e4bd; stroke-width: 2; stroke-linejoin: round; }
+.counter-slash { fill: #d8e8c4; opacity: .8; }
+.royal-cleave { fill: #f5e8bd; opacity: .85; }
+.bolt-aura { fill: #c9dfac; opacity: .28; }
+.arcane-bolt { fill: #d8edb9; stroke: #f5ffe2; stroke-width: 1; }
+.bolt-core { fill: #fffde8; }
+.attack-r .combat-warrior .weapon { transform-origin: 20px 34px; }
+.attack-n .combat-warrior .weapon { transform-origin: 10px 35px; }

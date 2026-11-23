@@ -1,0 +1,164 @@
+.board-frame {
+  padding:9px;
+  background:#292e29;
+  border:1px solid #4a5245;
+  box-shadow:0 18px 45px #0005
+}
+.board {
+  display:grid;
+  grid-template-columns:repeat(8,minmax(0,1fr));
+  aspect-ratio:1;
+  width:100%;
+  border:1px solid #141b15
+}
+.square {
+  position:relative;
+  display:block;
+  aspect-ratio:1;
+  min-width:0;
+  width:100%;
+  padding:0;
+  border:0;
+  border-radius:0;
+  isolation:isolate;
+  touch-action:manipulation
+}
+.square.light {
+  background:#bdc1af;
+  color:#3e493a
+}
+.square.dark {
+  background:#596653;
+  color:#e0e4d5
+}
+.square:hover {
+  box-shadow:inset 0 0 0 2px #eff2dd55
+}
+.square.last::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:#d8e39a29;
+  z-index:-1
+}
+.square.selected {
+  box-shadow:inset 0 0 0 3px #e3e6ad;
+  background:#8c9d70
+}
+.square.check {
+  background:#9b5950;
+  box-shadow:inset 0 0 0 3px #e9ab96
+}
+.square:focus-visible {
+  outline:3px solid #f4f0bb;
+  outline-offset:-3px;
+  z-index:2
+}
+.piece {
+  position:absolute;
+  inset:4% 5% 0;
+  pointer-events:none
+}
+.soldier {
+  width:100%;
+  height:100%;
+  overflow:visible
+}
+.figure {
+  stroke-linejoin:round;
+  fill:var(--soldier-fill);
+  stroke:var(--soldier-stroke);
+  stroke-width:1
+}
+.army-w {
+  --soldier-fill:#ecebdf;
+  --soldier-stroke:#3d4538;
+  --detail:#59614e;
+  filter:drop-shadow(0 2px 1px #10191066)
+}
+.army-b {
+  --soldier-fill:#202923;
+  --soldier-stroke:#c3c6ac;
+  --detail:#b5bda4;
+  filter:drop-shadow(0 2px 1px #10191066)
+}
+.figure .detail {
+  fill:none;
+  stroke:var(--detail);
+  stroke-width:1.8
+}
+.ground {
+  fill:#182014;
+  opacity:.22
+}
+.coord {
+  position:absolute;
+  font-size:10px;
+  font-weight:bold;
+  line-height:1;
+  pointer-events:none;
+  opacity:.85
+}
+.rank {
+  top:5px;
+  left:4px
+}
+.file {
+  bottom:4px;
+  right:5px
+}
+.marker {
+  display:none;
+  position:absolute;
+  inset:39%;
+  border-radius:50%;
+  background:#233d2b66;
+  pointer-events:none
+}
+.legal .marker {
+  display:block
+}
+.capture .marker {
+  inset:5%;
+  border:3px solid #e8e9a2b3;
+  background:transparent
+}
+.square.legal:hover {
+  box-shadow:inset 0 0 0 3px #e5ebad
+}
+.square[aria-pressed=true] .marker {
+  display:none
+}
+@media(max-width:400px) {
+  .board-frame {
+    padding:5px
+  }
+  .coord {
+    font-size:8px
+  }
+  .rank {
+    top:3px;
+    left:3px
+  }
+  .file {
+    bottom:3px;
+    right:3px
+  }
+}
+.setup-message {
+  grid-column:1/-1;
+  align-self:center;
+  text-align:center;
+  padding:24px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:2
+}
+.setup-message code {
+  color:var(--text)
+}
+/* Secondary cloth tone preserves the silhouette in both armies. */
+.army-w { --cloth: #c7ccbc; --hood: #59614e; }
+.army-b { --cloth: #354439; --hood: #0e1812; }
+.figure .cloak, .figure .pennant { fill: var(--cloth); }
+.figure .hood-shadow { fill: var(--hood); }

@@ -1,0 +1,73 @@
+.board-frame { position: relative; }
+.movement-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.moving-warrior { position: absolute; will-change: transform; }
+.is-moving .marker { display: none; }
+.is-moving .square.selected { box-shadow: none; }
+.moving-warrior .figure {
+  transform-origin: 32px 54px;
+  animation-duration: var(--travel-time);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+.moving-warrior.warrior-p .figure { animation-name: infantry-march; }
+.moving-warrior.warrior-n .figure { animation-name: mounted-charge; }
+.moving-warrior.warrior-b .figure { animation-name: mage-glide; }
+.moving-warrior.warrior-r .figure { animation-name: guardian-steps; }
+.moving-warrior.warrior-q .figure { animation-name: royal-dash; }
+.moving-warrior.warrior-k .figure { animation-name: king-walk; }
+.moving-warrior .legs {
+  transform-origin: 32px 41px;
+  animation: stride calc(var(--travel-time) / 3) ease-in-out 3;
+}
+.moving-warrior.warrior-b .ground { animation: magic-shadow var(--travel-time) ease-in-out; }
+@keyframes infantry-march {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%, 75% { transform: translateY(-2px) rotate(-3deg); }
+  50% { transform: translateY(0) rotate(3deg); }
+}
+@keyframes mounted-charge {
+  0%, 100% { transform: rotate(0deg); }
+  35% { transform: rotate(-9deg); }
+  70% { transform: rotate(5deg); }
+}
+@keyframes mage-glide {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  50% { opacity: .8; transform: translateY(-2px); }
+}
+@keyframes guardian-steps {
+  0%, 50%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-1px) rotate(-4deg); }
+  75% { transform: translateY(-1px) rotate(4deg); }
+}
+@keyframes royal-dash {
+  0%, 100% { transform: rotate(0deg); }
+  40% { transform: rotate(-5deg) scaleY(1.03); }
+}
+@keyframes king-walk {
+  0%, 50%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+@keyframes stride { 0%, 100% { transform: skewX(0deg); } 50% { transform: skewX(7deg); } }
+@keyframes magic-shadow { 50% { opacity: .12; transform: scaleX(.8); transform-origin: center; } }
+
+/* Idle animation is limited to the selected warrior rather than all 32 pieces. */
+.square.selected .figure { animation: ready-breath 2.8s ease-in-out infinite; transform-origin: 32px 54px; }
+.square.selected .warrior-b .figure { animation-name: mage-idle; }
+@keyframes ready-breath { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.025); } }
+@keyframes mage-idle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
+.motion-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 14px 0 0; }
+.motion-toggle { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; cursor: pointer; }
+.motion-toggle input { accent-color: var(--accent); width: 17px; height: 17px; margin: 0; }
+.skip-motion { min-height: 34px; padding: 6px 10px; }
+.skip-motion[hidden] { display: none; }
+body.page-inactive .figure { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .figure, .legs, .ground { animation: none !important; }
+}
+body.motion-disabled .figure { animation: none !important; }
